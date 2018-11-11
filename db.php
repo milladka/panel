@@ -125,12 +125,33 @@ function GetinfoUser($username , $conn , $obj){
 		echo $row[$obj];
 }
 
+function GetLangname($conn){
+	$query = $conn->prepare("SELECT * FROM languages");
+	$query->execute();
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo "<option>" . $row['viewname'] . "</option>";
+	}
+}
+
 
 function LangSave($data , $conn){
 	extract($data);
 	$statment = $conn->prepare("INSERT INTO languages (name , viewname) VALUES ( :name , :viewname) ");
 	$statment->bindParam("name" , $name);
 	$statment->bindParam("viewname" , $viewname);
+
+	return $statment->execute()? true : false;
+}
+
+function CourseSave($data , $conn){
+	extract($data);
+	$statment = $conn->prepare("INSERT INTO courses (namecourse, timecourse, typecourse, languagecourse, desccourse, amountcourse) VALUES ( :namecourse, :timecourse, :typecourse, :languagecourse, :desccourse, :amountcourse) ");
+	$statment->bindParam("namecourse" , $namecourse);
+	$statment->bindParam("timecourse" , $timecourse);
+	$statment->bindParam("typecourse" , $typecourse);
+	$statment->bindParam("languagecourse" , $languagecourse);
+	$statment->bindParam("desccourse" , $desccourse);
+	$statment->bindParam("amountcourse" , $amountcourse);
 
 	return $statment->execute()? true : false;
 }
@@ -145,10 +166,32 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 	echo "<td>" . $row['name'] . "</td>";
 	echo '<td><form action="deletelanguage.php" method="post">';
 	echo '<input type="hidden" name="name" class="form-control" ';
-  echo 'value="';
+    echo 'value="';
 	echo $row['name'];
 	echo '">';
 	echo '<button type="submit" class="btn btn-danger btn-sm">حذف</button></form></td>';
 	echo "</tr>";
 }
+}
+
+function viewCourses($conn){
+	$query = $conn->prepare("SELECT * FROM courses");
+	$query->execute();
+
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		echo "<td>" . $row['id'] . "</td>";
+		echo "<td>" . $row['namecourse'] . "</td>";
+		echo "<td>" . $row['timecourse'] . "</td>";
+		echo "<td>" . $row['typecourse'] . "</td>";
+		echo "<td>" . $row['languagecourse'] . "</td>";
+		echo "<td>" . $row['amountcourse'] . " ریال</td>";
+		echo '<td><form action="deletecourse.php" method="post">';
+		echo '<input type="hidden" name="id" class="form-control" ';
+		echo 'value="';
+		echo $row['id'];
+		echo '">';
+		echo '<button type="submit" class="btn btn-danger btn-sm">حذف</button></form></td>';
+		echo "</tr>";
+	}
 }

@@ -391,6 +391,11 @@ padding: 10px 20px;
 .form-group{
     font-family: vazir,tahoma, serif;
 }
+.form-check-inline .form-check-input {
+    position: static;
+    margin-top: 0;
+    margin-left: 0.3125rem;
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
