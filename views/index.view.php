@@ -19,27 +19,28 @@ $username = $_SESSION['username'];
 						<div class="widget widget-news">
 							<h6 class="title-widget-news">اخبار و اطلاعیه ها</h6>
 							<div class="list-group">
-								<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-									<div class="d-flex w-100 justify-content-between">
-										<h6 class="mb-1">برگزاری دوره آموزش زبان انگلیسی</h6>
-										<small>۳ روز پیش</small>
-									</div>
-									<small>دوره جدید زبان از امروز آغاز می شود</small>
-								</a>
-								<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-									<div class="d-flex w-100 justify-content-between">
-										<h6 class="mb-1">برگزاری دوره آموزش زبان انگلیسی</h6>
-										<small class="text-muted">۳ روز پیش</small>
-									</div>
-									<small class="text-muted">دوره جدید زبان از امروز آغاز می شود</small>
-								</a>
-								<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-									<div class="d-flex w-100 justify-content-between">
-										<h6 class="mb-1">برگزاری دوره آموزش زبان انگلیسی</h6>
-										<small class="text-muted">۳ روز پیش</small>
-									</div>
-									<small class="text-muted">دوره جدید زبان از امروز آغاز می شود</small>
-								</a>
+<!--								<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">-->
+<!--									<div class="d-flex w-100 justify-content-between">-->
+<!--										<h6 class="mb-1">برگزاری دوره آموزش زبان انگلیسی</h6>-->
+<!--										<small>۳ روز پیش</small>-->
+<!--									</div>-->
+<!--									<small>دوره جدید زبان از امروز آغاز می شود</small>-->
+<!--								</a>-->
+<!--								<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">-->
+<!--									<div class="d-flex w-100 justify-content-between">-->
+<!--										<h6 class="mb-1">برگزاری دوره آموزش زبان انگلیسی</h6>-->
+<!--										<small class="text-muted">۳ روز پیش</small>-->
+<!--									</div>-->
+<!--									<small class="text-muted">دوره جدید زبان از امروز آغاز می شود</small>-->
+<!--								</a>-->
+<!--								<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">-->
+<!--									<div class="d-flex w-100 justify-content-between">-->
+<!--										<h6 class="mb-1">برگزاری دوره آموزش زبان انگلیسی</h6>-->
+<!--										<small class="text-muted">۳ روز پیش</small>-->
+<!--									</div>-->
+<!--									<small class="text-muted">دوره جدید زبان از امروز آغاز می شود</small>-->
+<!--								</a>-->
+                              <?php  viewNewsIndex($conn) ?>
 							</div>
 						</div>
 						<!-- end new widget -->

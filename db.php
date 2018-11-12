@@ -156,6 +156,14 @@ function CourseSave($data , $conn){
 	return $statment->execute()? true : false;
 }
 
+function NewsSave($data , $conn){
+	extract($data);
+	$statment = $conn->prepare("INSERT INTO notifications (textnews) VALUES ( :textnews) ");
+	$statment->bindParam("textnews" , $textnews);
+
+	return $statment->execute()? true : false;
+}
+
 function viewlang($conn){
 	$query = $conn->prepare("SELECT * FROM languages");
   $query->execute();
@@ -192,6 +200,67 @@ function viewCourses($conn){
 		echo $row['id'];
 		echo '">';
 		echo '<button type="submit" class="btn btn-danger btn-sm">حذف</button></form></td>';
+		echo "</tr>";
+	}
+}
+
+function viewNews($conn){
+	$query = $conn->prepare("SELECT * FROM notifications");
+	$query->execute();
+
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		echo "<td>" . $row['id'] . "</td>";
+		echo "<td>" . $row['textnews'] . "</td>";
+		echo "<td>" . $row['timenews'] . "</td>";
+		echo '<td><form action="deletenews.php" method="post">';
+		echo '<input type="hidden" name="id" class="form-control" ';
+		echo 'value="';
+		echo $row['id'];
+		echo '">';
+		echo '<button type="submit" class="btn btn-danger btn-sm">حذف</button></form></td>';
+		echo "</tr>";
+	}
+}
+
+/**
+ * @param $conn
+ */
+function viewNewsIndex($conn){
+	$query = $conn->prepare("SELECT * FROM notifications");
+	$query->execute();
+
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
+		echo '<div class="d-flex w-100 justify-content-between">';
+		echo '<h6 class="mb-1">' . $row['textnews'] . '</h6>';
+		echo "<small>۳ روز پیش</small>";
+		echo "</div>";
+		echo "</a>";
+	}
+}
+
+function viewUsers($conn){
+	$query = $conn->prepare("SELECT * FROM users");
+	$query->execute();
+
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo "<tr>";
+		echo "<td>" . $row['id'] . "</td>";
+		echo "<td>" . $row['username'] . "</td>";
+		echo "<td>" . $row['fullname'] . "</td>";
+		echo "<td>" . $row['email'] . "</td>";
+		echo "<td>" . $row['phone'] . "</td>";
+		echo "<td>" . $row['mobile'] . "</td>";
+		if ( $row['username'] != 'admin') {
+			echo '<td><form action="deleteuser.php" method="post">';
+			echo '<input type="hidden" name="id" class="form-control" ';
+			echo 'value="';
+			echo $row['id'];
+			echo '">';
+			echo '<button type="submit" class="btn btn-danger btn-sm">حذف</button></form></td>';
+		}
+		;
 		echo "</tr>";
 	}
 }

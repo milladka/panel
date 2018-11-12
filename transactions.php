@@ -10,4 +10,4 @@ $conn =connectToDB();
 
 
 Get_User_role($username,$conn);
-require 'views/users.view.php';
+require 'views/transactions.view.php';
