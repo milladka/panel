@@ -11,7 +11,7 @@ if( isPost() ){
 		"textnews" => $textnews
 	];
 	$conn = connectToDB();
-	viewNewsIndex($data , $conn) ? $status = 'ثبت نام انجام نشد دوباره تلاش کنید' : $status = 'ثبت نام انجام نشد دوباره تلاش کنید';
+	NewsSave($data , $conn) ? $status = 'ثبت نام انجام نشد دوباره تلاش کنید' : $status = 'ثبت نام انجام نشد دوباره تلاش کنید';
 }
 
 

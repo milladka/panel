@@ -1,4 +1,5 @@
 <?php
+$name = 'اطلاعات کاربری';
 require 'header.view.php';
 require 'nav-top.view.php';
 require 'menu-side.view.php';

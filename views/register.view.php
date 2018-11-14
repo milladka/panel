@@ -1,4 +1,5 @@
 <?php
+$name = 'ثبت نام';
 require 'header.view.php'
 ?>
 <body class="register-page">

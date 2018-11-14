@@ -1,4 +1,5 @@
 <?php
+$name = 'ورود';
 require 'header.view.php'
 ?>
 <body class="register-page">

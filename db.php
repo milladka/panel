@@ -104,12 +104,12 @@ function GetemptyUser($username , $conn){
 	if ($row = $stmt->fetch()) {
 		if(empty($row['fullname']) || empty($row['codemelli']) || empty($row['phone']) || empty($row['mobile']) || empty($row['address']) ||
 		   empty($row['city']) || empty($row['state']) || empty($row['postalcode']) || empty($row['languages'])) {
-			echo '<div class="alert alert-success row" role="alert">
+			echo '<div class="alert  alert-info row" role="alert">
 							<div class="col-lg-8 col-xs-12"><h6 class="alert-heading">خوش آمدید</h6>
 							<p class="Headline-completion-account">کاربرگرامی، لطفا جهت بهره مندی از کلیه خدمات، اطلاعات کاربری خود را تکمیل نمایید.</p></div>
 							<div class="col-lg-4 col-xs-12"><a class="btn btn-success btn-xs" href="complatedata.php">تکمیل و بروزرسانی اطلاعات کاربری</a>
 							</div>
-						</div>';
+			 	</div>';
 		}
 	}
 }
@@ -182,6 +182,16 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 }
 }
 
+function viewlangli($conn){
+	$query = $conn->prepare("SELECT * FROM languages");
+	$query->execute();
+
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo "<option value='". $row['viewname'] ."'>". $row['viewname']."</option>";
+	}
+}
+
+
 function viewCourses($conn){
 	$query = $conn->prepare("SELECT * FROM courses");
 	$query->execute();
@@ -201,6 +211,15 @@ function viewCourses($conn){
 		echo '">';
 		echo '<button type="submit" class="btn btn-danger btn-sm">حذف</button></form></td>';
 		echo "</tr>";
+	}
+}
+
+function viewCoursescheack($conn){
+	$query = $conn->prepare("SELECT * FROM courses");
+	$query->execute();
+
+	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		echo "<div class='form-check'><input class='form-check-input' name='namecourse' type='checkbox' value='". $row['namecourse']," ",$row['timecourse']," کد ",$row['id']."' id='". $row['id']. "'><label for='". $row['id'] . "'>" . $row['namecourse']," ",$row['timecourse'].  "</label></div>";
 	}
 }
 
@@ -231,10 +250,13 @@ function viewNewsIndex($conn){
 	$query->execute();
 
 	while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+		$datatime =  $row['timenews'] ;
 		echo '<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">';
 		echo '<div class="d-flex w-100 justify-content-between">';
 		echo '<h6 class="mb-1">' . $row['textnews'] . '</h6>';
-		echo "<small>۳ روز پیش</small>";
+		echo "<small>";
+		echo time_elapsed_string($datatime, false);
+		echo "</small>";
 		echo "</div>";
 		echo "</a>";
 	}

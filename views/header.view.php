@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="./assets/css/bootstrap-rtl.min.css">
 	<link rel="stylesheet" href="./assets/css/normalize.css">
 	<link rel="stylesheet" href="./assets/css/main.css">
-	<link rel="stylesheet" href="./assets/css/AdminLTE.min.css">
+<!--	<link rel="stylesheet" href="./assets/css/AdminLTE.min.css">-->
 	<link rel="stylesheet" href="./assets/css/rtl.css">
 </head>
 <body>

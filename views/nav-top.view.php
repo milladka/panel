@@ -17,7 +17,7 @@
                         GetNameUser($username , $conn);
                         ?>
                     </span> خوش آمدید</p>
-				<a href="logout.php"><i class="fas fa-sign-out-alt"></i></a>
+				<a class="logout-icon" href="logout.php"><i class="fas fa-sign-out-alt"></i></a>
 			</div>
 		</div>
 	</nav>
