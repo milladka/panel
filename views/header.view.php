@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
     <link rel="manifest" href="site.webmanifest">
-	<link rel="apple-touch-icon" href="icon.png">
+	<link rel="apple-touch-icon" href="logo.png">
     <link rel="icon" href="./img/logo.png" type="image/x-icon"/>
 	<!-- Place favicon.ico in the root directory -->
 	<link rel="stylesheet" href="./assets/css/bootstrap-rtl.min.css">

@@ -28,15 +28,7 @@ $conn =connectToDB();
 			<div class="widget-request">
 			<h6 class="title-widget-request">درخواست ها</h6>
 			<div class="row">
-			    <div class="col-sm-6">
-				<div class="card reg-master">
-						<div class="card-body">
-						<h6 class="card-title">مدرس زبان خارجی هستید ؟</h6>
-						<p class="card-text">اگر در زمینه تدریس زبان خارجی مهارت دارید، از لینک زیر به مدرسین ما بپیوندید.</p>
-						<a href="register_teacher.php" class="btn btn-info btn-block btn-sm">ثبت نام مدرس</a>
-						</div>
-				</div>
-				</div>
+			    <div class="col-sm-6"><?php getidfromteacher2($username , $conn)?></div>
 				<div class="col-sm-6">
 				<div class="card reg-tranlator">
 						<div class="card-body">

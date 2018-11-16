@@ -37,6 +37,12 @@ function userSave($data , $conn){
 	return $statment->execute() ? true : false;
 }
 
+
+function SaveTeachers($data , $conn){
+	extract($data);
+	$statment = $conn->prepare("INSERT INTO teachers (id_user , nameuser , typecourse , languagescourse, namecourse, filekartmelli, filemadrak, fileresume) VALUES ( :id_user , :nameuser , :typecourse , :languagescourse, :namecourse, :filekartmelli, :filemadrak, :fileresume ) ");
+}
+
 function userUpdate($data , $conn){
 	extract($data);
 	$statment = $conn->prepare("UPDATE users SET fullname= :fullname, email= :email, mobile= :mobile, phone= :phone, codemelli= :codemelli, state= :state, city= :city, postalcode= :postalcode, languages= :languages, address= :address WHERE username= :username");
@@ -121,8 +127,9 @@ function GetemptyUser($username , $conn){
 function GetinfoUser($username , $conn , $obj){
 	$stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
 	$stmt->execute(["username" => $username]);
-	if ($row = $stmt->fetch())
+	if ($row = $stmt->fetch()){
 		echo $row[$obj];
+	}
 }
 
 function GetLangname($conn){
@@ -284,5 +291,51 @@ function viewUsers($conn){
 		}
 		;
 		echo "</tr>";
+	}
+}
+
+function getidfromteacher($id , $conn){
+	$keyword= $id;
+	$sql="SELECT * FROM `teachers` WHERE `nameuser` LIKE :keyword;";
+	$q=$conn->prepare($sql);
+	$q->bindValue(':keyword','%'.$keyword.'%');
+	$q->execute();
+
+	if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+
+	}
+	switch(	$r['nameuser'] === $id){
+		case true:
+		echo "<button class=\"btn btn-primary\" disabled  >قبلا درخواستی ارسال کرده اید.</button>";
+		break;
+		case  false:
+		echo "<button class=\"btn btn-success mt-3\"  type=\"submit\" name=\"submit\" >ثبت درخواست</button>";
+		break;
+	}
+}
+
+function getidfromteacher2($id , $conn){
+	$keyword= $id;
+	$sql="SELECT * FROM `teachers` WHERE `nameuser` LIKE :keyword;";
+	$q=$conn->prepare($sql);
+	$q->bindValue(':keyword','%'.$keyword.'%');
+	$q->execute();
+
+	if($r=$q->fetch(PDO::FETCH_ASSOC)) {
+
+	}
+	switch(	$r['nameuser'] === $id){
+		case true:
+			echo "";
+			break;
+		case  false:
+			echo "<div class=\"card reg-master\">
+						<div class=\"card-body\">
+						<h6 class=\"card-title\">مدرس زبان خارجی هستید ؟</h6>
+						<p class=\"card-text\">اگر در زمینه تدریس زبان خارجی مهارت دارید، از لینک زیر به مدرسین ما بپیوندید.</p>
+						<a href=\"register_teacher.php\" class=\"btn btn-info btn-block btn-sm\">ثبت نام مدرس</a>
+						</div>
+				</div>";
+			break;
 	}
 }
